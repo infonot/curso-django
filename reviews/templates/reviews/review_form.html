@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ encabezado }}{% endblock titulo%}
+
+{% block contenido %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'reviews:index' %}">Regresar a Reviews</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Registrar Review</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-12">
+            <h2>{{ encabezado }}</h2>
+        </div>
+    </div>
+    <form method="POST" class="py-3">
+        {% csrf_token %}
+        {% include 'form_render.html' %}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+{% endblock contenido %}

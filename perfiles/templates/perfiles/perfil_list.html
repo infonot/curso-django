@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio{% endblock titulo%}
+
+{% block contenido %}
+    <div class="row mt-5">
+        <div class="col">
+            <h2>Lista de Perfiles</h2>
+        </div>
+    </div>
+    <ul class="list-group mt-4">
+        {% for perfil in perfiles %}
+            <li class="list-group-item">
+                <img src="{{ perfil.foto_perfil.url }}" alt="Foto de Perfil">
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock contenido %}

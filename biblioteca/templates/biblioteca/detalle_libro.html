@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ libro.titulo }}{% endblock titulo %}
+
+{% block contenido %}
+    <h1>{{ libro.titulo }}</h1>
+    {% if libro.bestseller %}
+        <h2>¡Este libro es un bestseller!</h2>
+    {% endif %}
+    <p>Este libro tiene una calificación de {{ libro.calificacion }}</p>
+    <a href="{% url 'biblioteca:index' %}">Regresar a Inicio</a>
+{% endblock contenido %}

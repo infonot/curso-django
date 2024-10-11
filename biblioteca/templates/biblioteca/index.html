@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block titulo %}Biblioteca - Home{% endblock titulo %}
+
+{% block contenido %}
+    <h1>Lista de Libros</h1>
+    <ul>
+        {% for libro in libros %}
+            <li><a href="{{ libro.get_absolute_url }}">{{ libro }}</a> ({{ libro.calificacion }})</li>
+        {% endfor %}
+    </ul>
+    <p>Mi biblioteca tiene un total de {{ total_libros }} libros y un promedio de calificación de {{ promedio_calificacion.calificacion__avg }}</p>
+{% endblock contenido %}

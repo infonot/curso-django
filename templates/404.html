@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}404 - Sitio No Encontrado{% endblock titulo%}
+
+{% block custom-css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock custom-css %}
+
+{% block contenido %}
+    <div class="container">
+        <h1>404</h1>
+        <h2>Página no encontrada</h2>
+        <p>Lo sentimos, la página que estás buscando no existe.</p>
+        <a href="{% url 'desafios:index' %}">Volver al inicio</a>
+    </div>
+{% endblock contenido %}

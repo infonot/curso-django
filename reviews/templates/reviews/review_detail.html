@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block titulo %}Consultar Reseña{% endblock titulo%}
+
+{% block contenido %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'reviews:index' %}">Regresar a Reseñas</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Consultar Reseña</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-12">
+            <h2>Consultar Reseña</h2>
+        </div>
+    </div>
+    <p>
+        Usuario: {{ review.username }}
+        <br>
+        Rating: {{ review.rating }}
+        <br>
+        Review: {{ review.review }}
+    </p>
+    <a
+        class="btn btn-warning"
+        href="{% url 'reviews:modificar' pk=review.pk %}"
+        role="button"
+    >Editar Reseña</a>
+{% endblock contenido %}
