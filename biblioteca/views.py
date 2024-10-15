@@ -1,5 +1,8 @@
 from django.db.models import Avg
-from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
+from django.views.generic import DetailView, View
 
 from biblioteca.models import Libro
 
@@ -18,9 +21,32 @@ def index(request):
     return render(request, "biblioteca/index.html", params)
 
 
-def detalle_libro(request, id):
-    libro = get_object_or_404(Libro, pk=id)
-    params = {
-        "libro": libro,
-    }
-    return render(request, "biblioteca/detalle_libro.html", params)
+class LibroDetailView(DetailView):
+    model = Libro
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Objetos dentro de la petición.
+        libro_actual = self.object
+        request = self.request
+
+        # Obtener datos de la sesión.
+        id_libro_favorito = request.session.get("id_libro_favorito")
+
+        # Variable de contexto para identificar si el libro consultado es el favorito.
+        context["es_favorito"] = id_libro_favorito == str(libro_actual.pk)
+
+        return context
+
+
+class FavoritoView(View):
+    def post(self, request):
+        # Obtener datos de la forma.
+        id_libro = request.POST["id_libro"]
+        
+        # Registrar los datos en la sesión.
+        request.session["id_libro_favorito"] = id_libro
+        
+        url = reverse("biblioteca:detalle_libro", kwargs={"pk": id_libro})
+        return HttpResponseRedirect(url)

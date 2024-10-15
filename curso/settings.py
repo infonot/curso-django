@@ -148,3 +148,7 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Tiempo de vida (en segundos) de las cookies por sesión.
+
+SESSION_COOKIE_AGE = 1209600 # Default de dos semanas.

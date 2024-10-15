@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ libro.titulo }}{% endblock titulo %}
+
+{% block contenido %}
+    <a href="{% url 'biblioteca:index' %}">Regresar a Inicio</a>
+    
+    <h1>{{ libro.titulo }}</h1>
+    
+    {% if libro.bestseller %}
+        <h2>¡Este libro es un bestseller!</h2>
+    {% endif %}
+
+    <p>Este libro tiene una calificación de {{ libro.calificacion }}</p>
+    
+    {% if es_favorito %}
+        <p>¡Mi libro favorito!</p>
+    {% else %}
+        <form action="{% url 'biblioteca:marcar_como_favorito' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id_libro" value="{{ libro.id }}">
+            <button type="submit">Marcar Como Favorito</button>
+        </form>
+    {% endif %}
+
+{% endblock contenido %}

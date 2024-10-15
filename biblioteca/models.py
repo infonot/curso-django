@@ -55,7 +55,7 @@ class Libro(models.Model):
     activo = models.BooleanField(default=True)
 
     def get_absolute_url(self):
-        return reverse("biblioteca:detalle_libro", kwargs={"id": self.id})
+        return reverse("biblioteca:detalle_libro", kwargs={"pk": self.id})
     
     def __str__(self):
         return f"{self.titulo}"

@@ -5,5 +5,6 @@ app_name = 'biblioteca'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('<int:id>', views.detalle_libro, name='detalle_libro')
+    path('<int:pk>', views.LibroDetailView.as_view(), name='detalle_libro'),
+    path('marcar-como-favorito', views.FavoritoView.as_view(), name='marcar_como_favorito')
 ]
